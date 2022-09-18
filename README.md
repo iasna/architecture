@@ -1,4 +1,5 @@
-# architecture
+# Architecture
+
 ## Public Load Balancer
 HTTPS requests from external users, such as users of Hyperion Financial Reporting Web Studio, flow through the internet gateway that's attached to the VCN in currently active region. The requests then pass through the global Oracle Cloud Infrastructure Web Application Firewall (WAF) service, which protects the applications from malicious and unwanted internet traffic. Traffic that passes the WAF rules is forwarded to the public load balancer. The load balancer terminates SSL/TSL, and distributes HTTP requests to the private web tier.
 ## Private Load Balancer
@@ -9,6 +10,11 @@ An Oracle Cloud Infrastructure region is a localized geographic area that contai
 Availability domains are standalone, independent data centers within a region. The physical resources in each availability domain are isolated from the resources in the other availability domains, which provides fault tolerance. Availability domains don’t share infrastructure such as power or cooling, or the internal availability domain network. So, a failure at one availability domain is unlikely to affect the other availability domains in the region.
 ## Fault domain
 A fault domain is a grouping of hardware and infrastructure within an availability domain. Each availability domain has three fault domains with independent power and hardware. When you distribute resources across multiple fault domains, your applications can tolerate physical server failure, system maintenance, and power failures inside a fault domain.
+## VPN/FastConnect
+An IPSec VPN establishes an encrypted network connection over the internet between your network or data center and your Oracle Cloud Infrastructure virtual cloud network (VCN). It's a suitable solution if you have low or modest bandwidth requirements and can tolerate the inherent variability in internet-based connections. FastConnect bypasses the internet. Instead, it uses dedicated, private network connections between your network or data center and your VCN.
+
+Yes. You can provision FastConnect and an IPSec VPN simultaneously. Typically, you would set up FastConnect as the primary path and the IPSec VPN as a backup path via the internet. The FastConnect path will always be preferred when available, unless you add more specific static routes to the IPSec VPN connection.
+
 ## Network address translation (NAT) gateway
 A NAT gateway enables private resources in a VCN to access hosts on the internet, without exposing those resources to incoming internet connections.
 
@@ -33,3 +39,6 @@ Logging Analytics is a fully managed SaaS regional service available in more tha
 ## Kubernetes Ingress
 ## Kubernetes Service
 ## Kubernetes Monitoring Pods
+
+## DR Architecture
+
